@@ -32,9 +32,12 @@ away_results.columns = ['Away' + col for col in away_results.columns]
 # Combine home and away results
 combined_results = home_results.join(away_results, how='outer', on=['HomeTeam', 'TimeBin']).fillna(0)
 
-# Example: Print Liverpool's results
-print("Liverpool's Results Based on Time of Day:")
-print(combined_results.loc['Liverpool'])
+# Iterate over each row in the combined_results DataFrame
+for team_time, data in combined_results.iterrows():
+    team, time_bin = team_time
+    print(f"Team: {team}, Time of Day: {time_bin}")
+    print(data)
+    print("\n")
 
 # print(df)
 ''' Uncomment if you want to see if there is missing data
